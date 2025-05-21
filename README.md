@@ -54,7 +54,7 @@ MozJPEG's `cjpeg` supports various options. Here are some common ones:
 Example with multiple options:
 
 ```bash
-docker run -v $(pwd):/data mozjpeg -quality 85 -optimize -progressive input.jpg > output.jpg
+docker run -v .:/data mozjpeg -quality 85 -optimize -progressive input.jpg > output.jpg
 ```
 
 ### Batch Processing
@@ -64,7 +64,7 @@ To process multiple images in a directory:
 ```bash
 # For all jpg files in current directory
 for file in *.jpg; do
-    docker run -v $(pwd):/data mozjpeg -quality 85 "$file" > "compressed_$file"
+  docker run -v .:/data mozjpeg -quality 85 "$file" > "compressed_$file"
 done
 ```
 
