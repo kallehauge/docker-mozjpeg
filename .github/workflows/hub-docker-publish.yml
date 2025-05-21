@@ -86,10 +86,12 @@ jobs:
         # against the sigstore community Fulcio instance.
         run: echo "${TAGS}" | xargs -I {} cosign sign --yes {}@${DIGEST}
 
-      # Update Docker description to match GitHub README.
-      - name: Docker Hub Description
+      # Update Docker Hub description with README content.
+      - name: Update Docker Hub Description
+        if: github.event_name != 'pull_request'
         uses: peter-evans/dockerhub-description@v4
         with:
-            username: ${{ secrets.DOCKERHUB_USERNAME }}
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
-            repository: ${{ env.IMAGE_NAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ env.IMAGE_NAME }}
+          readme-filepath: ./README.md
