@@ -1,0 +1,2 @@
+# Ignore tmp directory used for local testing images
+/tmp/
